@@ -1,1 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timulitos</title>
+</head>
+<body>
+    <div id="cuadricula">
+        <h1>Timulitos</h1>
+    
+    <div class = "grilla">
+            <div class="juego-card" data-juego="Juego1">
+            <span class="juego-nombre">Juego 1</span>
+            </div>
 
+            <div class="juego-card" data-juego="Juego2">
+            <span class="juego-nombre">Juego 2</span>
+            </div>
+
+            <div class="juego-card" data-juego="Juego3">
+            <span class="juego-nombre">Juego 3</span>
+            </div>
+
+            <div class="juego-card" data-juego="Juego4">
+            <span class="juego-nombre">Juego 4</span>
+            </div>
+
+            <div class="juego-card" data-juego="Juego5">
+            <span class="juego-nombre">Juego 5</span>
+            </div>
+
+            <div class="juego-card" data-juego="Juego6">
+            <span class="juego-nombre">Juego 6</span>
+            </div>
+
+            <div class="juego-card" data-juego="Juego7">
+            <span class="juego-nombre">Juego 7</span>
+            </div>
+
+            <div class="juego-card" data-juego="Juego8">
+            <span class="juego-nombre">Juego 8</span>
+            </div>
+
+    </div>
+
+    <style>
+
+        body{
+            font-family: sans-serif;
+            background-color: #f1e1f0;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+          
+        }
+
+        h1 {
+            color: rgb(255, 244, 171);
+            text-align: center;
+            font: size 20px;
+            
+        }
+
+        .grilla {
+            display: grid;
+            grid-template-columns: (4, 1fr);
+            gap: 16px;
+        }
+
+        .juego-card {
+            background-color: rgb(227, 242, 255);
+            border: #ff00ee;
+            border-radius: 16px;
+            padding: 28px 16px;
+            gap: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</body>
+</html>
