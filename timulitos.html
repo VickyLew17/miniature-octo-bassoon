@@ -5,24 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timulitos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+<button class="BotonInformes">
+    <!-- Aquí va tu icono (puedes usar un SVG o FontAwesome) -->
+    <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+    </svg>
+  </button>
+
+
+
 <h1 id="TituloPrincipal">Timulitos</h1>
-<p id="slogan">El único requisito es querer pasarla bien!</p>
+<p id="slogan">El unico requisito es querer pasarla bien!</p>
 
 <div class="BotonesInicio">
-    <a href="#" class="btn">Comienza</a>
-    <a href="#" class="btn">Más sobre nosotras</a>
+    <a href="#" class="btnInicio">Comenzar</a>
+    <a href="#" class="btnInicio">Mas sobre nosotras</a>
 </div>
 
 
-
     <div id="cuadricula">
-        <h1>Timulitos </h1>
+        <h1 id="TituloJuegos">Juegos </h1>
     
     <div class = "grilla">
             <div class="juego-card" data-juego="Juego1">
@@ -70,13 +78,12 @@
             background-color: #fff8d8;
         }
 
-        h1 {
+        #TituloJuegos {
             color: rgb(0, 0, 0);
             text-align: center;
             font-size: 60px;
             font-weight: 700;
-            /*-webkit-text-stroke: 5px rgb(153, 153, 153);
-            paint-order: stroke fill; */
+            margin-top: 10px;
         }
 
         .juego-nombre {
@@ -95,7 +102,7 @@
         .juego-card {
             background-color: rgb(168, 168, 168);
             border-radius: 16px;
-            padding: 60px;
+            padding: 50px;
             gap: 12px;
             display: flex;
             flex-direction: column;
@@ -120,25 +127,25 @@
         gap: 20px;
         }
 
-        .btn {
+        .btnInicio {
         display: inline-block;
         text-decoration: none;
-        background-color: #FFECF1;
+        background-color: #FDE6E3;
         color: #000000;
         font-size: 16px;
         font-weight: 400;
         padding: 14px 35px;
-        border: 2px solid #000000;
+        border: 1px solid #000000;
         border-radius: 50px;
         margin-bottom: 150px;
         }
 
-        .btn:hover {
+        .btnInicio:hover {
             box-shadow: 0 5px 10px rgba(107, 140, 255, 0.18);
             transform: translateY(-2px);
         }
 
-        .btn:active {
+        .btnInicio:active {
             transform: translateY(0);
         }
 
@@ -147,20 +154,44 @@
             text-align: center;
             margin-top: 0px;
             margin-bottom: 60px;
-            color: #888888;
+            color: #FFC1D1;
         }
 
         #TituloPrincipal {
             font-size:  150px;
             font-weight: 400;
             color: #FFC1D1;
-            margin-top: 100px;
+            margin-top: 60px;
             margin-bottom: -10px;
             -webkit-text-stroke: 30px #e2faff;
-            paint-order: stroke fill;   
+            paint-order: stroke fill;  
+            text-align: center; 
+        }
+
+       .BotonInformes {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #e2faff;
+        border: 3px solid #FFC1D1;
+        color: #000000; 
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        margin-left: 24px;  
+        margin-top: 24px;  
+        }
+
+        .BotonInformes:hover {
+            box-shadow: 0 5px 10px rgba(107, 140, 255, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .BotonInformes:active {
+            transform: translateY(0);
         }
 
     </style>
 
-</body>
+</body> 
 </html>
