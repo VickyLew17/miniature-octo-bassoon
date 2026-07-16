@@ -1,273 +1,384 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>xx</title>
+  <title>index</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
   <style>
-    /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: sans-serif;
-      background: #f0f4ff;
+      font-family: 'Jua', sans-serif;
+      background-color: #fff8d8;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    }
+
+    /* ── PANTALLAS ── */
+    .pantalla { display: none; min-height: 100vh; padding: 24px; }
+    .pantalla.activa { display: block; }
+
+    /* ── BOTÓN VOLVER ── */
+    .btn-volver {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 32px 24px;
+      gap: 8px;
+      background: none;
+      border: 2px solid #FFC1D1;
+      color: #000;
+      font-family: 'Jua', sans-serif;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-bottom: 32px;
     }
+    .btn-volver:hover { transform: translateY(-2px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+    .btn-volver:active { transform: translateY(0); }
 
-    /* ── PANTALLA DE INICIO ── */
-    #pantalla-inicio {
-      width: 100%;
-      max-width: 900px;
+    /* ── INICIO ── */
+    #pantalla-inicio { display: block; }
+
+    .BotonInformes {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background-color: #e2faff;
+      border: 3px solid #FFC1D1;
+      color: #000;
+      display: flex; align-items: center; justify-content: center;
+      margin-left: 24px; margin-top: 24px;
+      cursor: pointer;
     }
+    .BotonInformes:hover { box-shadow: 0 5px 10px rgba(107,140,255,0.18); transform: translateY(-2px); }
+    .BotonInformes:active { transform: translateY(0); }
 
-    h1 {
+    #TituloPrincipal {
+      font-size: 150px; font-weight: 400; color: #FFC1D1;
+      margin-top: 60px; margin-bottom: -10px;
+      -webkit-text-stroke: 30px #e2faff;
+      paint-order: stroke fill;
       text-align: center;
-      font-size: 2.4rem;
-      margin-bottom: 8px;
-      color: #1a1a2e;
     }
 
-    .subtitulo {
-      text-align: center;
-      color: #555;
-      margin-bottom: 36px;
-      font-size: 1rem;
+    #slogan {
+      font-size: 25px; text-align: center;
+      margin-top: 0; margin-bottom: 60px; color: #FFC1D1;
     }
 
-    /* ── GRILLA ── */
+    .BotonesInicio { display: flex; justify-content: center; gap: 20px; }
+
+    .btnInicio {
+      display: inline-block;
+      background-color: #FDE6E3; color: #000;
+      font-family: 'Jua', sans-serif; font-size: 16px;
+      padding: 14px 35px;
+      border: 1px solid #000; border-radius: 50px;
+      cursor: pointer;
+    }
+    .btnInicio:hover { box-shadow: 0 5px 10px rgba(107,140,255,0.18); transform: translateY(-2px); }
+    .btnInicio:active { transform: translateY(0); }
+
+    /* ── POPUP ── */
+    #overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4); z-index: 100;
+      align-items: center; justify-content: center;
+    }
+    #overlay.activo { display: flex; }
+
+    .popup {
+      background: #fff8d8; border: 3px solid #FFC1D1;
+      border-radius: 24px; padding: 48px 40px;
+      text-align: center; max-width: 420px; width: 90%;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .popup h2 { font-size: 28px; }
+
+    .popup-botones { display: flex; flex-direction: column; gap: 12px; }
+
+    .btn-popup {
+      font-family: 'Jua', sans-serif; font-size: 18px;
+      padding: 14px; border-radius: 50px; border: 2px solid #000; cursor: pointer;
+    }
+    .btn-popup.primario { background-color: #FFC1D1; }
+    .btn-popup.secundario { background-color: #e2faff; }
+    .btn-popup:hover { transform: translateY(-2px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+    .btn-popup:active { transform: translateY(0); }
+
+    .btn-cerrar-popup {
+      background: none; border: none; color: #aaa;
+      font-size: 14px; cursor: pointer; font-family: 'Jua', sans-serif;
+    }
+    .btn-cerrar-popup:hover { color: #000; }
+
+    /* ── ELEGIR CUENTAS ── */
+    #pantalla-cuentas { display: none; flex-direction: column; align-items: center; }
+    #pantalla-cuentas.activa { display: flex; }
+    #pantalla-cuentas h2 { font-size: 40px; margin-bottom: 40px; text-align: center; }
+
+    .cuentas-grid { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+
+    .cuenta-slot {
+      background: #FDE6E3; border: 2px solid #000;
+      border-radius: 20px; padding: 40px 32px; width: 220px;
+      text-align: center; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .cuenta-slot:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .cuenta-slot .icono { font-size: 48px; }
+    .cuenta-slot span { font-size: 20px; }
+
+    .btn-jugar-cuentas {
+      font-family: 'Jua', sans-serif; font-size: 20px;
+      padding: 16px 48px; border-radius: 50px;
+      border: 2px solid #000; background-color: #FFC1D1; cursor: pointer;
+    }
+    .btn-jugar-cuentas:hover { transform: translateY(-2px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+
+    /* ── GRILLA DE JUEGOS ── */
+    #TituloJuegos { color: #000; text-align: center; font-size: 60px; font-weight: 700; margin-bottom: 32px; }
+
     .grilla {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1000px; margin: 0 auto;
     }
 
     .juego-card {
-      background: white;
-      border: 2px solid #dde3f5;
-      border-radius: 16px;
-      padding: 28px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-      user-select: none;
+      background-color: rgb(168,168,168);
+      border-radius: 16px; padding: 50px 16px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      cursor: pointer; border: 2px solid #000;
     }
+    .juego-card:hover { box-shadow: 0 5px 10px rgba(107,140,255,0.18); transform: translateY(-2px); }
+    .juego-card:active { transform: translateY(0); }
+    .juego-icono { font-size: 2.8rem; }
+    .juego-nombre { font-size: 20px; text-align: center; }
 
-    .juego-card:hover {
-      transform: translateY(-4px);
-      border-color: #6b8cff;
-      box-shadow: 0 8px 24px rgba(107, 140, 255, 0.18);
-    }
-
-    .juego-card:active {
-      transform: translateY(0px);
-    }
-
-    .juego-icono {
-      font-size: 2.8rem;
-      line-height: 1;
-    }
-
-    .juego-nombre {
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-align: center;
-      color: #1a1a2e;
-    }
-
-    /* ── PANTALLA DE JUEGO ── */
-    #pantalla-juego {
-      display: none;
-      width: 100%;
-      max-width: 900px;
-      text-align: center;
-    }
-
-    #pantalla-juego.activa {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-    }
-
-    #nombre-juego-activo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #1a1a2e;
-    }
+    /* ── JUEGO ACTIVO ── */
+    #nombre-juego-activo { font-size: 36px; text-align: center; margin-bottom: 24px; }
 
     #area-juego {
-      width: 100%;
-      min-height: 400px;
-      background: white;
-      border: 2px solid #dde3f5;
+      width: 100%; max-width: 900px; min-height: 420px;
+      background: white; border: 2px solid #FFC1D1;
       border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: #888;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: #888; margin: 0 auto;
     }
 
-    #btn-volver {
-      background: none;
-      border: 2px solid #6b8cff;
-      color: #6b8cff;
-      padding: 10px 28px;
-      border-radius: 99px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
+    /* ── INFORMES ── */
+    #pantalla-informes h2 { font-size: 48px; margin-bottom: 32px; }
+
+    .lista-usuarios { display: flex; flex-direction: column; gap: 12px; max-width: 500px; }
+
+    .usuario-item {
+      background: #FDE6E3; border: 2px solid #000;
+      border-radius: 16px; padding: 20px 28px;
+      font-size: 20px; cursor: pointer;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .usuario-item:hover { transform: translateX(6px); }
+
+    /* ── INFORME USUARIO ── */
+    #pantalla-informe-usuario h2 { font-size: 40px; margin-bottom: 24px; }
+
+    .informe-contenido {
+      background: white; border: 2px solid #FFC1D1;
+      border-radius: 20px; padding: 32px;
+      max-width: 600px; font-size: 18px; line-height: 1.8; color: #333;
     }
 
-    #btn-volver:hover {
-      background: #6b8cff;
-      color: white;
-    }
+    /* ── ABOUT ── */
+    #pantalla-about h2 { font-size: 48px; margin-bottom: 24px; }
+    .about-contenido { max-width: 700px; font-size: 20px; line-height: 1.8; color: #333; }
+    .about-contenido p { margin-bottom: 16px; }
   </style>
 </head>
 <body>
 
-  <!-- PANTALLA DE INICIO -->
-  <div id="pantalla-inicio">
-    <h1>Timulitos 🎮</h1>
-    <p class="subtitulo">Elegí un juego para empezar</p>
-
-    <div class="grilla">
-      <div class="juego-card" data-juego="fuegos">
-        <span class="juego-icono">🎆</span>
-        <span class="juego-nombre">Fuegos artificiales</span>
+  <!-- POPUP -->
+  <div id="overlay">
+    <div class="popup">
+      <h2>¿Cómo querés jugar?</h2>
+      <div class="popup-botones">
+        <button class="btn-popup primario" id="btn-con-cuenta">Entrar con cuenta</button>
+        <button class="btn-popup secundario" id="btn-sin-cuenta">Jugar sin cuenta</button>
       </div>
-      <div class="juego-card" data-juego="conejito">
-        <span class="juego-icono">🐰</span>
-        <span class="juego-nombre">Conejito que salta flores</span>
-      </div>
-      <div class="juego-card" data-juego="animales">
-        <span class="juego-icono">🐮</span>
-        <span class="juego-nombre">Animales que hacen ruido</span>
-      </div>
-      <div class="juego-card" data-juego="basket">
-        <span class="juego-icono">🏀</span>
-        <span class="juego-nombre">Básquet</span>
-      </div>
-      <div class="juego-card" data-juego="topos">
-        <span class="juego-icono">🐹</span>
-        <span class="juego-nombre">Topos</span>
-      </div>
-      <div class="juego-card" data-juego="instrumentos">
-        <span class="juego-icono">🎹</span>
-        <span class="juego-nombre">Instrumentos</span>
-      </div>
-      <div class="juego-card" data-juego="auto">
-        <span class="juego-icono">🚗</span>
-        <span class="juego-nombre">Auto con limpiaparabrisas</span>
-      </div>
-      <div class="juego-card" data-juego="arbol">
-        <span class="juego-icono">🎄</span>
-        <span class="juego-nombre">Árbol de navidad</span>
-      </div>
-      <div class="juego-card" data-juego="burbujas">
-        <span class="juego-icono">🫧</span>
-        <span class="juego-nombre">Burbujas</span>
-      </div>
-      <div class="juego-card" data-juego="pesca">
-        <span class="juego-icono">🎣</span>
-        <span class="juego-nombre">Pesca</span>
-      </div>
-      <div class="juego-card" data-juego="flor">
-        <span class="juego-icono">🌸</span>
-        <span class="juego-nombre">Flor que crece</span>
-      </div>
+      <button class="btn-cerrar-popup" id="btn-cerrar-popup">Cancelar</button>
     </div>
   </div>
 
-  <!-- PANTALLA DE JUEGO -->
-  <div id="pantalla-juego">
-    <div id="nombre-juego-activo"></div>
-    <div id="area-juego">
-      <!-- Acá va el juego seleccionado -->
-      <span>El juego se carga acá</span>
+  <!-- INICIO -->
+  <div id="pantalla-inicio" class="pantalla">
+    <button class="BotonInformes" id="btn-ir-informes" title="Informes">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+    </button>
+    <h1 id="TituloPrincipal">Timulitos</h1>
+    <p id="slogan">¡El único requisito es querer pasarla bien!</p>
+    <div class="BotonesInicio">
+      <button class="btnInicio" id="btn-comenzar">Comenzar</button>
+      <button class="btnInicio" id="btn-ir-about">Más sobre nosotras</button>
     </div>
-    <button id="btn-volver">← Volver al inicio</button>
+  </div>
+
+  <!-- ELEGIR CUENTAS -->
+  <div id="pantalla-cuentas" class="pantalla">
+    <button class="btn-volver" data-destino="inicio">← Volver</button>
+    <h2>¿Quién va a jugar?</h2>
+    <div class="cuentas-grid">
+      <div class="cuenta-slot" id="slot-boton1">
+        <span class="icono">🎮</span>
+        <span>Botón 1</span>
+        <small style="color:#888;font-size:14px">Toca para elegir cuenta</small>
+      </div>
+      <div class="cuenta-slot" id="slot-boton2">
+        <span class="icono">🕹️</span>
+        <span>Botón 2</span>
+        <small style="color:#888;font-size:14px">Toca para elegir cuenta</small>
+      </div>
+    </div>
+    <button class="btn-jugar-cuentas" id="btn-jugar-con-cuentas">¡Jugar! →</button>
+  </div>
+
+  <!-- GRILLA DE JUEGOS -->
+  <div id="pantalla-grilla" class="pantalla">
+    <button class="btn-volver" data-destino="inicio">← Inicio</button>
+    <h1 id="TituloJuegos">Juegos</h1>
+    <div class="grilla">
+      <div class="juego-card" data-juego="fuegos"><span class="juego-icono">🎆</span><span class="juego-nombre">Fuegos artificiales</span></div>
+      <div class="juego-card" data-juego="conejito"><span class="juego-icono">🐰</span><span class="juego-nombre">Conejito que salta flores</span></div>
+      <div class="juego-card" data-juego="animales"><span class="juego-icono">🐮</span><span class="juego-nombre">Animales que hacen ruido</span></div>
+      <div class="juego-card" data-juego="basket"><span class="juego-icono">🏀</span><span class="juego-nombre">Básquet</span></div>
+      <div class="juego-card" data-juego="topos"><span class="juego-icono">🐹</span><span class="juego-nombre">Topos</span></div>
+      <div class="juego-card" data-juego="instrumentos"><span class="juego-icono">🎹</span><span class="juego-nombre">Instrumentos</span></div>
+      <div class="juego-card" data-juego="auto"><span class="juego-icono">🚗</span><span class="juego-nombre">Auto con limpiaparabrisas</span></div>
+      <div class="juego-card" data-juego="arbol"><span class="juego-icono">🎄</span><span class="juego-nombre">Árbol de navidad</span></div>
+      <div class="juego-card" data-juego="burbujas"><span class="juego-icono">🫧</span><span class="juego-nombre">Burbujas</span></div>
+      <div class="juego-card" data-juego="pesca"><span class="juego-icono">🎣</span><span class="juego-nombre">Pesca</span></div>
+      <div class="juego-card" data-juego="flor"><span class="juego-icono">🌸</span><span class="juego-nombre">Flor que crece</span></div>
+    </div>
+  </div>
+
+  <!-- JUEGO ACTIVO -->
+  <div id="pantalla-juego" class="pantalla">
+    <button class="btn-volver" data-destino="grilla">← Juegos</button>
+    <div id="nombre-juego-activo"></div>
+    <div id="area-juego"><span>El juego se carga acá 🚧</span></div>
+  </div>
+
+  <!-- INFORMES -->
+  <div id="pantalla-informes" class="pantalla">
+    <button class="btn-volver" data-destino="inicio">← Inicio</button>
+    <h2>Informes</h2>
+    <div class="lista-usuarios">
+      <div class="usuario-item" data-usuario="usuario1">👤 Usuario 1</div>
+      <div class="usuario-item" data-usuario="usuario2">👤 Usuario 2</div>
+      <div class="usuario-item" data-usuario="usuario3">👤 Usuario 3</div>
+    </div>
+  </div>
+
+  <!-- INFORME DE USUARIO -->
+  <div id="pantalla-informe-usuario" class="pantalla">
+    <button class="btn-volver" data-destino="informes">← Informes</button>
+    <h2 id="nombre-usuario-informe">Usuario</h2>
+    <div class="informe-contenido">
+      <p>📅 Última sesión: —</p>
+      <p>🎮 Juegos jugados: —</p>
+      <p>⭐ Progreso: —</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="pantalla-about" class="pantalla">
+    <button class="btn-volver" data-destino="inicio">← Inicio</button>
+    <h2>Más sobre nosotras</h2>
+    <div class="about-contenido">
+      <p>Timulitos es un proyecto desarrollado por estudiantes de 3.º año de la especialidad TIC en ORT.</p>
+      <p>Fue creado en conjunto con CIREN, una organización dedicada a la rehabilitación e inclusión de niños con parálisis cerebral.</p>
+      <p>Nuestro objetivo es que cada chico pueda jugar, interactuar y pasarla bien. 🎉</p>
+    </div>
   </div>
 
   <script>
-    const pantallaInicio = document.getElementById('pantalla-inicio');
-    const pantallaJuego  = document.getElementById('pantalla-juego');
-    const nombreJuego    = document.getElementById('nombre-juego-activo');
-    const areaJuego      = document.getElementById('area-juego');
-    const btnVolver      = document.getElementById('btn-volver');
-
-    // Nombres legibles por juego
-    const nombres = {
-      fuegos:       'Fuegos artificiales',
-      conejito:     'Conejito que salta flores',
-      animales:     'Animales que hacen ruido',
-      basket:       'Básquet',
-      topos:        'Topos',
-      instrumentos: 'Instrumentos',
-      auto:         'Auto con limpiaparabrisas',
-      arbol:        'Árbol de navidad',
-      burbujas:     'Burbujas',
-      pesca:        'Pesca',
-      flor:         'Flor que crece',
+    // ── NAVEGACIÓN ──
+    const pantallas = {
+      inicio:            document.getElementById('pantalla-inicio'),
+      cuentas:           document.getElementById('pantalla-cuentas'),
+      grilla:            document.getElementById('pantalla-grilla'),
+      juego:             document.getElementById('pantalla-juego'),
+      informes:          document.getElementById('pantalla-informes'),
+      'informe-usuario': document.getElementById('pantalla-informe-usuario'),
+      about:             document.getElementById('pantalla-about'),
     };
 
-    // Al hacer click en una card
+    function irA(destino) {
+      Object.values(pantallas).forEach(p => p.classList.remove('activa'));
+      if (pantallas[destino]) pantallas[destino].classList.add('activa');
+      window.scrollTo(0, 0);
+    }
+
+    document.querySelectorAll('.btn-volver').forEach(btn => {
+      btn.addEventListener('click', () => irA(btn.dataset.destino));
+    });
+
+    // ── INICIO ──
+    document.getElementById('btn-ir-informes').addEventListener('click', () => irA('informes'));
+    document.getElementById('btn-ir-about').addEventListener('click', () => irA('about'));
+    document.getElementById('btn-comenzar').addEventListener('click', () => {
+      document.getElementById('overlay').classList.add('activo');
+    });
+
+    // ── POPUP ──
+    function cerrarPopup() { document.getElementById('overlay').classList.remove('activo'); }
+    document.getElementById('btn-cerrar-popup').addEventListener('click', cerrarPopup);
+    document.getElementById('btn-sin-cuenta').addEventListener('click', () => { cerrarPopup(); irA('grilla'); });
+    document.getElementById('btn-con-cuenta').addEventListener('click', () => { cerrarPopup(); irA('cuentas'); });
+    document.getElementById('overlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('overlay')) cerrarPopup();
+    });
+
+    // ── CUENTAS ──
+    document.getElementById('btn-jugar-con-cuentas').addEventListener('click', () => irA('grilla'));
+
+    // ── JUEGOS ──
+    const nombresJuegos = {
+      fuegos: 'Fuegos artificiales', conejito: 'Conejito que salta flores',
+      animales: 'Animales que hacen ruido', basket: 'Básquet', topos: 'Topos',
+      instrumentos: 'Instrumentos', auto: 'Auto con limpiaparabrisas',
+      arbol: 'Árbol de navidad', burbujas: 'Burbujas', pesca: 'Pesca', flor: 'Flor que crece',
+    };
+
     document.querySelectorAll('.juego-card').forEach(card => {
       card.addEventListener('click', () => {
         const id = card.dataset.juego;
-        abrirJuego(id);
+        document.getElementById('nombre-juego-activo').textContent = nombresJuegos[id];
+        document.getElementById('area-juego').innerHTML = `<span>${nombresJuegos[id]} — próximamente 🚧</span>`;
+        irA('juego');
       });
     });
 
-    // Volver al inicio
-    btnVolver.addEventListener('click', () => {
-      pantallaJuego.classList.remove('activa');
-      pantallaJuego.style.display = 'none';
-      pantallaInicio.style.display = 'block';
+    // ── INFORMES ──
+    document.querySelectorAll('.usuario-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.getElementById('nombre-usuario-informe').textContent = item.textContent.trim();
+        irA('informe-usuario');
+      });
     });
-
-    function abrirJuego(id) {
-      pantallaInicio.style.display = 'none';
-      pantallaJuego.style.display  = 'flex';
-      pantallaJuego.classList.add('activa');
-      nombreJuego.textContent = nombres[id] || id;
-      areaJuego.innerHTML = `<span>Juego: ${nombres[id]} — próximamente 🚧</span>`;
-
-      // TODO: cargar la lógica de cada juego según el id
-      // cargarJuego(id);
-    }
 
     // ── BOTONERAS ──
-    // Botonera A = Espacio | Botonera B = Enter
+    let juegoActivo = null;
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') {
-        e.preventDefault();
-        manejarBoton('A');
-      }
-      if (e.code === 'Enter') {
-        e.preventDefault();
-        manejarBoton('B');
-      }
+      if (e.code === 'Space') { e.preventDefault(); manejarBoton('A'); }
+      if (e.code === 'Enter') { e.preventDefault(); manejarBoton('B'); }
     });
-
     function manejarBoton(jugador) {
-      // Por ahora solo loguea — cuando implementes cada juego,
-      // acá llamás a la función correspondiente
-      console.log(`Botonera ${jugador} presionada`);
-      // TODO: juegoActivo.onBoton(jugador);
+      if (!juegoActivo) return;
+      console.log(`Botonera ${jugador} — juego: ${juegoActivo}`);
     }
   </script>
-
 </body>
 </html>
-

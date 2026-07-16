@@ -11,8 +11,9 @@
 
 <body>
 
+<div class="pantalla" id="pantalla-inicio">
 <button class="BotonInformes">
-    <!-- Aquí va tu icono (puedes usar un SVG o FontAwesome) -->
+    
     <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
     </svg>
@@ -21,16 +22,23 @@
 
 
 <h1 id="TituloPrincipal">Timulitos</h1>
-<p id="slogan">El unico requisito es querer pasarla bien!</p>
+<p id="slogan">¡El único requisito es querer pasarla bien!</p>
 
 <div class="BotonesInicio">
-    <a href="#" class="btnInicio">Comenzar</a>
-    <a href="#" class="btnInicio">Mas sobre nosotras</a>
+    <button class="btnInicio">Comenzar</button>
+    <button class="btnInicio">Más sobre nosotras</button>
+</div>
 </div>
 
+<div class="pantalla" id="pantalla-about">
+  <h2>Más sobre nosotras</h2>
+  <p>Timulitos es un proyecto desarrollado por estudiantes de 3.º año de TIC en ORT.</p>
+  <p>Trabajamos junto a CIREN para crear una experiencia de juego accesible e inclusiva.</p>
+  <p>— Acá va más info sobre el equipo y el proyecto —</p>
+</div>
 
-    <div id="cuadricula">
-        <h1 id="TituloJuegos">Juegos </h1>
+<div class="pantalla" id="cuadricula">
+    <h1 id="TituloJuegos">Juegos </h1>
     
     <div class = "grilla">
             <div class="juego-card" data-juego="Juego1">
@@ -69,7 +77,27 @@
             <span class="juego-nombre">Juego 9</span>
             </div>
 
-    </div>
+</div>
+</div>
+
+<div class="pantalla" id="pantalla-informes">
+  <h2>Informes</h2>
+  <p>Seleccioná un usuario para ver su análisis</p>
+  <div class="lista-usuarios">
+    <div class="usuario-item">Usuario 1</div>
+    <div class="usuario-item">Usuario 2</div>
+    <div class="usuario-item">Usuario 3</div>
+    <div class="usuario-item">Usuario 4</div>
+  </div>
+</div>
+
+<div class="pantalla" id="pantalla-informe-usuario">
+  <h2>Usuario 1</h2>
+  <p>Última sesión: ---</p>
+  <p>Juegos jugados:---</p>
+  <p>Sesiones totales: ---</p>
+  <p>Yqsssssssss:---</p>
+</div>
 
     <style>
 
@@ -138,6 +166,7 @@
         border: 1px solid #000000;
         border-radius: 50px;
         margin-bottom: 150px;
+        font-family: Jua;
         }
 
         .btnInicio:hover {
@@ -190,6 +219,8 @@
         .BotonInformes:active {
             transform: translateY(0);
         }
+
+
 
     </style>
 
