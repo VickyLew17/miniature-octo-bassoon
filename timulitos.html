@@ -43,24 +43,26 @@
             <span class="juego-nombre">Juego 8</span>
             </div>
 
+            <div class="juego-card" data-juego="Juego9">
+            <span class="juego-nombre">Juego 9</span>
+            </div>
+
     </div>
 
     <style>
 
         body{
             font-family: sans-serif;
-            background-color: #f1d1ed;
-            
-          
+            background-color: #e0e0e0;
         }
 
         h1 {
-            color: rgb(249, 252, 199);
+            color: rgb(0, 0, 0);
             text-align: center;
             font-size: 60px;
-            -webkit-text-stroke: 5px rgb(255, 255, 255); 
-            paint-order: stroke fill;
-    
+            font-weight: 700;
+            /*-webkit-text-stroke: 5px rgb(153, 153, 153);
+            paint-order: stroke fill; */
         }
 
         .juego-nombre {
@@ -69,23 +71,35 @@
 
         .grilla {
             display: grid;
-            grid-template-columns: (4, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
             align-items: center;
-            display: flex;
-            flex-direction: column;
         }
 
         .juego-card {
-            background-color: rgb(192, 230, 247);
+            background-color: rgb(168, 168, 168);
             border-radius: 16px;
-            padding: 40px;
+            padding: 60px;
             gap: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 12px;
+            cursor: pointer;
         }
+
+        .juego-card:hover {
+            box-shadow: 0 5px 10px rgba(107, 140, 255, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .juego-card:active {
+            transform: translateY(0);
+        }
+
     </style>
+
 </body>
 </html>
