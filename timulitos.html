@@ -33,13 +33,13 @@
     <div class="jugador-seccion">
       <h2>Jugador 1</h2>
       <p>¿Quién jugará hoy?</p>
-      <p class="TituloJugadoresAnteriores">Jugadores anteriores:</p>
+      <p id="JugadoresAnteriores">Jugadores anteriores:</p>
     
       <div class="lista-jugadores">
-        <div class="jugador-item">Usuario1</div>
-        <div class="jugador-item">Usuario2</div>
-        <div class="jugador-item">Usuario3</div>
-        <div class="jugador-item">Usuario4</div>
+        <div class="jugador-item">Usuario 1</div>
+        <div class="jugador-item">Usuario 2</div>
+        <div class="jugador-item">Usuario 3</div>
+        <div class="jugador-item">Usuario 4</div>
       </div>
 
     <button class="btn-crear-jugador">Crear cuenta jugador 1</button>
@@ -48,13 +48,13 @@
     <div class="jugador-seccion">
       <h2>Jugador 2</h2>
       <p>¿Quién jugará hoy?</p>
-      <p class="subtitulo-usuarios">Jugadores anteriores:</p>
+      <p id="JugadoresAnteriores">Jugadores anteriores:</p>
       
     <div class="lista-jugadores">
-        <div class="jugador-item">Usuario1</div>
-        <div class="jugador-item">Usuario2</div>
-        <div class="jugador-item">Usuario3</div>
-        <div class="jugador-item">Usuario4</div>
+        <div class="jugador-item">Usuario 1</div>
+        <div class="jugador-item">Usuario 2</div>
+        <div class="jugador-item">Usuario 3</div>
+        <div class="jugador-item">Usuario 4</div>
     </div>
       <button class="btn-crear-jugador">Crear cuenta jugador 2</button>
     </div>
@@ -523,82 +523,82 @@
             margin-top: -20px;
         }
 
+        .elegir-usuarios {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        padding: 0 32px;
+        }
 
-        .elegir-usuarios-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
+        .jugador-seccion {
+        background: #e2faff;
+        border-radius: 20px;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 32px;
+        }
 
-.jugador-seccion {
-  background: #e2faff;
-  border-radius: 20px;
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+        .jugador-seccion h2 {
+        font-size: 38px;
+        margin-bottom: -8px;
+        }
 
-.jugador-seccion h2 {
-  font-size: 32px;
-}
+        .jugador-seccion p {
+        font-size: 24px;
+        color: #555;
+        
+        }
 
-.jugador-seccion p {
-  font-size: 18px;
-  color: #555;
-}
+       #JugadoresAnteriores{
+        font-size: 18px;
+        color: #888;
+        }   
 
-.subtitulo-usuarios {
-  font-size: 16px !important;
-  color: #888 !important;
-}
+        .lista-jugadores {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        }
 
-.lista-jugadores {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
+        .jugador-item {
+        background: #FFC1D1;
+        border: 2px solid #000;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        font-size: 18px;
+        cursor: pointer;
+        }
 
-.jugador-item {
-  background: #FFC1D1;
-  border: 2px solid #000;
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  font-size: 18px;
-  cursor: pointer;
-}
+        .jugador-item:hover {
+        box-shadow: 0 5px 10px rgba(107, 140, 255, 0.18);
+        transform: translateY(-2px);
+        }
 
-.jugador-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
+        .jugador-item:active {
+        transform: translateY(0);
+        }
 
-.jugador-item:active {
-  transform: translateY(0);
-}
+        .btn-crear-jugador {
+        font-family: Jua;
+        font-size: 16px;
+        padding: 12px 20px;
+        border: 2px solid #000;
+        border-radius: 50px;
+        background: #FDE6E3;
+        cursor: pointer;
+        margin-top: 8px;
+        }
 
-.btn-crear-jugador {
-  font-family: Jua;
-  font-size: 16px;
-  padding: 12px 20px;
-  border: 2px solid #000;
-  border-radius: 50px;
-  background: #FDE6E3;
-  cursor: pointer;
-  margin-top: 8px;
-}
-
-.btn-crear-jugador:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
+        .btn-crear-jugador:hover {
+        box-shadow: 0 5px 10px rgba(107, 140, 255, 0.18);
+        transform: translateY(-2px);
+        }
 
 
-    </style>
+</style>
 
 </body> 
 </html>
